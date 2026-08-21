@@ -1,0 +1,104 @@
+{
+  "backend": "keyword overlap",
+  "mean_ms": {
+    "embed": 0.0,
+    "retrieve": 0.0,
+    "llm": 3234.9,
+    "total": 3234.9
+  },
+  "results": [
+    {
+      "query": "Why is goodput more useful than raw throughput?",
+      "answer": "Based on the context provided, **Goodput** is more useful than raw throughput because it **ignores SLOs** at saturation.\n\nWhile raw throughput measures the total requests per second (requests per second), Goodput specifically counts only the requests that met the Target Time-to-Fullness (TTFT) and Target Time-to-Poll (TPOT) targets. This means Goodput only counts requests that actually satisfied their deadlines, whereas raw throughput counts all requests regardless of whether they met their deadlines. Therefore, Goodput is more useful for monitoring system health and ensuring SLOs are met.",
+      "contexts": [
+        {
+          "id": "goodput",
+          "score": 1.0
+        },
+        {
+          "id": "paged",
+          "score": 0.0
+        },
+        {
+          "id": "radix",
+          "score": 0.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.0,
+        "retrieve": 0.0,
+        "llm": 3136.1,
+        "total": 3136.2
+      },
+      "server_timings": {
+        "prompt_n": 4,
+        "prompt_ms": 31.346,
+        "predicted_n": 122,
+        "predicted_ms": 819.33
+      }
+    },
+    {
+      "query": "What problem does PagedAttention actually solve?",
+      "answer": "PagedAttention solves the problem of **internal fragmentation** in GPU memory.\n\nWhile RadixAttention uses a trie to cache keys by token prefix to avoid prefilling, PagedAttention specifically addresses a different issue: the internal fragmentation of the KV cache itself. By storing the KV cache in non-contiguous pages, PagedAttention removes the wasted space that would otherwise exist within the contiguous memory regions used for the cache. This allows the GPU to utilize more of its available memory bandwidth and compute capacity, which is particularly beneficial for compute-bound operations like the prefill phase of the attention mechanism.",
+      "contexts": [
+        {
+          "id": "paged",
+          "score": 1.0
+        },
+        {
+          "id": "radix",
+          "score": 0.0
+        },
+        {
+          "id": "disagg",
+          "score": 0.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.0,
+        "retrieve": 0.0,
+        "llm": 3026.3,
+        "total": 3026.3
+      },
+      "server_timings": {
+        "prompt_n": 4,
+        "prompt_ms": 28.416,
+        "predicted_n": 120,
+        "predicted_ms": 773.488
+      }
+    },
+    {
+      "query": "When does splitting prefill and decode help?",
+      "answer": "Splitting prefill and decode helps to **avoid memory bandwidth bottlenecks during the decoding phase**, while simultaneously **preventing the prefill phase from becoming a bottleneck due to compute-bound execution**.\n\nHere is the breakdown of how this optimization works based on the provided context:\n\n1.  **Prefill is Compute-bound**: The prefill phase requires significant processing power (CPU/GPU) to generate the initial token sequence. If this phase is the bottleneck, the system is limited by its compute capacity rather than memory bandwidth.\n2.  **Decode is Memory-bound**: The actual decoding of the pre-filled tokens happens in memory, which is the primary constraint for the model's speed.\n3.  **The Solution**: By splitting the work, the system allows the prefill to run efficiently on compute resources (skipping the need for the full prefill in the shared prefix case) while the actual decoding proceeds in memory, ensuring the model can process data faster than it can be generated",
+      "contexts": [
+        {
+          "id": "disagg",
+          "score": 2.0
+        },
+        {
+          "id": "radix",
+          "score": 1.0
+        },
+        {
+          "id": "batching",
+          "score": 1.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.0,
+        "retrieve": 0.0,
+        "llm": 3542.3,
+        "total": 3542.3
+      },
+      "server_timings": {
+        "prompt_n": 4,
+        "prompt_ms": 27.475,
+        "predicted_n": 200,
+        "predicted_ms": 1306.811
+      }
+    }
+  ]
+}
