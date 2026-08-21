@@ -6,6 +6,7 @@ thấy** và **file được sinh ra**. Các file đó là bằng chứng để 
 **Tổng thời gian:** ~2.5 giờ cho base track · +1–2 giờ nếu làm bonus.
 
 > ### 🪟 Windows: đọc phần này trước
+>
 > Windows không có `make`. Khi hướng dẫn ghi `make <target>`, hãy dùng
 > **`.\lab.ps1 <target>`** với cùng tên target.
 >
@@ -16,13 +17,14 @@ thấy** và **file được sinh ra**. Các file đó là bằng chứng để 
 > ```
 
 > ### 🐍 Về các lệnh `python` trong tài liệu
+>
 > Lab **không** dùng `python` toàn cục — mọi thứ chạy trong virtualenv mà `make setup`
 > tạo ra. Vì vậy tài liệu luôn ghi đường dẫn đầy đủ:
 >
-> | OS | Dùng |
-> |---|---|
-> | macOS / Linux | `.venv/bin/python labs/...` |
-> | Windows | `.venv\Scripts\python labs\...` |
+> | OS            | Dùng                             |
+> | ------------- | --------------------------------- |
+> | macOS / Linux | `.venv/bin/python labs/...`     |
+> | Windows       | `.venv\Scripts\python labs\...` |
 >
 > Trên macOS/Linux, gõ `python` trần thường báo `command not found` (chỉ có `python3`),
 > và kể cả `python3` cũng thiếu package của lab. Luôn dùng `.venv/bin/python`.
@@ -53,11 +55,11 @@ Bạn sẽ thấy thông tin về CPU, số core, RAM, accelerator và model dù
 
 **Chọn cách chạy ngay ở bước này:**
 
-| RAM | Cách làm |
-|---|---|
-| **≥ 8 GB** | Tiếp tục bước 0.2 và 0.3 trên laptop |
-| **4–8 GB** | Vẫn chạy local, chỉ đổi model: `LAB_MODEL=qwen35-0.8b make setup` (xem bước 0.2). **Không mất điểm.** |
-| **< 4 GB** | Mở [`cloud/README.md`](cloud/README.md) và làm trên Colab/Kaggle. **Không mất điểm.** |
+| RAM               | Cách làm                                                                                                              |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **≥ 8 GB** | Tiếp tục bước 0.2 và 0.3 trên laptop                                                                              |
+| **4–8 GB** | Vẫn chạy local, chỉ đổi model:`LAB_MODEL=qwen35-0.8b make setup` (xem bước 0.2). **Không mất điểm.** |
+| **< 4 GB**  | Mở[`cloud/README.md`](cloud/README.md) và làm trên Colab/Kaggle. **Không mất điểm.**                     |
 
 → Sinh ra: **`hardware.json`** *(rubric 1)*
 
@@ -68,15 +70,15 @@ Bạn sẽ thấy thông tin về CPU, số core, RAM, accelerator và model dù
 Lab có **hai** option. Cả hai Apache-2.0, **không gated** (không token, không accept license).
 Chọn một, làm hết lab với nó.
 
-| | **Gemma 4 E2B** *(mặc định)* | **Qwen3.5 0.8B** *(nhỏ, nhanh)* |
-|---|---|---|
-| Repo | [unsloth/gemma-4-E2B-it-GGUF](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF) | [unsloth/Qwen3.5-0.8B-GGUF](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF) |
-| Tải về | ~5.2 GB | **~0.9 GB** |
-| RAM tối thiểu | 8 GB | **4 GB** |
-| Model load | ~6 s | **~3 s** |
-| Decode (M1, Metal) | ~27 tok/s | **~42 tok/s** |
-| Chất lượng câu trả lời | tốt hơn | thấp hơn (0.8B là 0.8B) |
-| Bonus C1 (MTP spec-decode) | có MTP head | không có |
+|                              | **Gemma 4 E2B** *(mặc định)*                                          | **Qwen3.5 0.8B** *(nhỏ, nhanh)*                                     |
+| ---------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Repo                         | [unsloth/gemma-4-E2B-it-GGUF](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF) | [unsloth/Qwen3.5-0.8B-GGUF](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF) |
+| Tải về                     | ~5.2 GB                                                                          | **~0.9 GB**                                                            |
+| RAM tối thiểu              | 8 GB                                                                             | **4 GB**                                                               |
+| Model load                   | ~6 s                                                                             | **~3 s**                                                               |
+| Decode (M1, Metal)           | ~27 tok/s                                                                        | **~42 tok/s**                                                          |
+| Chất lượng câu trả lời | tốt hơn                                                                        | thấp hơn (0.8B là 0.8B)                                                   |
+| Bonus C1 (MTP spec-decode)   | có MTP head                                                                     | không có                                                                   |
 
 **Chọn thế nào:**
 
@@ -97,11 +99,11 @@ mỗi request xong nhanh hơn nên bạn thu được nhiều mẫu hơn trong 6
 
 ### File sẽ được tải
 
-| Vai trò | Gemma 4 E2B | Qwen3.5 0.8B |
-|---|---|---|
-| primary | `gemma-4-E2B-it-UD-Q4_K_XL.gguf` (2.97 GB) [tải](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-UD-Q4_K_XL.gguf) | `Qwen3.5-0.8B-Q4_K_M.gguf` (0.50 GB) [tải](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-Q4_K_M.gguf) |
-| compare | `gemma-4-E2B-it-UD-Q2_K_XL.gguf` (2.24 GB) [tải](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-UD-Q2_K_XL.gguf) | `Qwen3.5-0.8B-UD-Q2_K_XL.gguf` (0.39 GB) [tải](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-UD-Q2_K_XL.gguf) |
-| bonus C1 | `mtp-gemma-4-E2B-it.gguf` (0.09 GB) [tải](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/mtp-gemma-4-E2B-it.gguf) | — |
+| Vai trò | Gemma 4 E2B                                                                                                                                        | Qwen3.5 0.8B                                                                                                                                 |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| primary  | `gemma-4-E2B-it-UD-Q4_K_XL.gguf` (2.97 GB) [tải](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-UD-Q4_K_XL.gguf) | `Qwen3.5-0.8B-Q4_K_M.gguf` (0.50 GB) [tải](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-Q4_K_M.gguf)         |
+| compare  | `gemma-4-E2B-it-UD-Q2_K_XL.gguf` (2.24 GB) [tải](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-UD-Q2_K_XL.gguf) | `Qwen3.5-0.8B-UD-Q2_K_XL.gguf` (0.39 GB) [tải](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-UD-Q2_K_XL.gguf) |
+| bonus C1 | `mtp-gemma-4-E2B-it.gguf` (0.09 GB) [tải](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/mtp-gemma-4-E2B-it.gguf)               | —                                                                                                                                           |
 
 **Bước 0.3 (`make setup`) tự tải hai file đầu.** Bảng trên để bạn biết mình đang tải gì, và
 để dùng khi mạng trường chặn Hugging Face. Nếu tải tự động fail, script in ra đúng lệnh
@@ -346,13 +348,13 @@ Chi tiết: [`bonus/README.md`](bonus/README.md) ·
 
 Chọn **1–2 mục**, không cần làm hết. Có 5 tiêu chí, mỗi tiêu chí 4 điểm:
 
-| | Lệnh | Ghi chú |
-|---|---|---|
-| **B1** | `make build-llama && make compare-builds` | Compile cho CPU của bạn rồi so với prebuilt binary. **Máy yếu thường có mức cải thiện rõ nhất ở đây.** Cần `cmake`. |
-| **B2** | `make sweep-quant` / `sweep-ctx` / `sweep-batch` / `sweep-gpu` | Chọn 1 sweep phù hợp với bottleneck của bạn |
-| **B3** | — | Ghi before/after của B1 hoặc B2 vào REFLECTION §6 |
-| **B4** | — | Chọn 1 challenge C1–C7 trong `bonus/CHALLENGES.md` |
-| **B5** | `make mlx-compare` (Mac) **hoặc** `make semantic-cache` (C8) **hoặc** `make serve-embed && make embed-demo` (C9) **hoặc** C6 | 4 lựa chọn; nền tảng nào cũng có lựa chọn phù hợp |
+|              | Lệnh                                                                                                                                                   | Ghi chú                                                                                                                                     |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **B1** | `make build-llama && make compare-builds`                                                                                                             | Compile cho CPU của bạn rồi so với prebuilt binary.**Máy yếu thường có mức cải thiện rõ nhất ở đây.** Cần `cmake`. |
+| **B2** | `make sweep-quant` / `sweep-ctx` / `sweep-batch` / `sweep-gpu`                                                                                  | Chọn 1 sweep phù hợp với bottleneck của bạn                                                                                            |
+| **B3** | —                                                                                                                                                      | Ghi before/after của B1 hoặc B2 vào REFLECTION §6                                                                                        |
+| **B4** | —                                                                                                                                                      | Chọn 1 challenge C1–C7 trong`bonus/CHALLENGES.md`                                                                                        |
+| **B5** | `make mlx-compare` (Mac) **hoặc** `make semantic-cache` (C8) **hoặc** `make serve-embed && make embed-demo` (C9) **hoặc** C6 | 4 lựa chọn; nền tảng nào cũng có lựa chọn phù hợp                                                                                 |
 
 Gợi ý theo máy và mục tiêu:
 
@@ -376,7 +378,6 @@ Mỗi bonus script cũng sinh file `benchmarks/bonus-*.md` có section
    ```bash
    git add -A && git commit -m "Day 20 lab submission" && git push
    ```
-
 4. Paste public URL vào ô submission Day 20 trên VinUni LMS.
 
 **Repo phải public cho đến khi điểm được công bố.** Nếu repo private, grader không thể
@@ -389,20 +390,20 @@ Không commit `models/*.gguf` hoặc `runtime/`. Hai path này đã có trong `.
 
 # Troubleshooting
 
-| Triệu chứng | Cách xử lý |
-|---|---|
-| `unknown model architecture: 'gemma4'` | llama.cpp quá cũ. Chạy `make runtime` để tải lại bản đã pin. |
-| `make probe` báo `GPU offload : OFF` dù máy có GPU | Bình thường, và **không mất điểm** — toàn bộ 100 điểm base chạy trên CPU. Upstream llama.cpp **không** phát hành bản CUDA cho Linux, nên máy Linux + NVIDIA nhận bản Vulkan; thiếu Vulkan ICD thì runtime không thấy device nào. Lab tự set `ngl=0` để report không ghi sai. Muốn dùng GPU: `LLAMA_CMAKE_FLAGS=-DGGML_CUDA=ON make build-llama` (bonus B1). |
-| `make serve` báo không tìm thấy venv | Bạn chưa chạy `make setup`. |
-| `couldn't bind HTTP server socket … port: 8080` | Có process khác đang giữ port 8080. Đổi port: `LAB_SERVER_PORT=8090 make serve` (và dùng cùng biến đó cho `make smoke`, `make load-10/50`, `make metrics`, `make pipeline`). Trên Colab notebook đã set sẵn. |
-| `make bench` fail, câu trả lời rỗng | Gemma 4 là reasoning model; lab đã set `--reasoning off`. Nếu bạn tự bật `LAB_REASONING=on`, `content` sẽ rỗng cho đến khi model "nghĩ" xong. |
-| `make metrics` báo scrape failed | Server chưa chạy. Chạy `make serve` trước. |
-| `busy_slots ≈ 1` dù đã chạy metrics | Bạn chạy `make metrics` khi không có load. Phải chạy chồng với `make load-50`. |
-| locust chỉ hoàn thành vài request | Bình thường trên máy yếu. Muốn thêm mẫu, dùng `-t 3m` hoặc giảm `LAB_LOAD_SHORT_TOKENS`. |
-| Hugging Face bị chặn | Xem [`labs/00-setup/MANUAL-DOWNLOAD.md`](labs/00-setup/MANUAL-DOWNLOAD.md). |
-| Máy < 8 GB RAM | Dùng [`cloud/README.md`](cloud/README.md). |
-| `make verify` fail mà chưa rõ lý do | Output ghi đúng file còn thiếu và lệnh cần chạy. Đọc từng dòng lỗi. |
-| Sau checklist có dòng `make: *** [verify] Error 1` | Bình thường. Đó chỉ là cách `make` báo rằng `verify` tìm thấy mục còn thiếu — không phải `make` bị lỗi. Đọc checklist ở trên nó. |
+| Triệu chứng                                              | Cách xử lý                                                                                                                                                                                                                                                                                                                                                                                                |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `unknown model architecture: 'gemma4'`                   | llama.cpp quá cũ. Chạy`make runtime` để tải lại bản đã pin.                                                                                                                                                                                                                                                                                                                                      |
+| `make probe` báo `GPU offload : OFF` dù máy có GPU | Bình thường, và**không mất điểm** — toàn bộ 100 điểm base chạy trên CPU. Upstream llama.cpp **không** phát hành bản CUDA cho Linux, nên máy Linux + NVIDIA nhận bản Vulkan; thiếu Vulkan ICD thì runtime không thấy device nào. Lab tự set `ngl=0` để report không ghi sai. Muốn dùng GPU: `LLAMA_CMAKE_FLAGS=-DGGML_CUDA=ON make build-llama` (bonus B1). |
+| `make serve` báo không tìm thấy venv                 | Bạn chưa chạy`make setup`.                                                                                                                                                                                                                                                                                                                                                                              |
+| `couldn't bind HTTP server socket … port: 8080`         | Có process khác đang giữ port 8080. Đổi port:`LAB_SERVER_PORT=8090 make serve` (và dùng cùng biến đó cho `make smoke`, `make load-10/50`, `make metrics`, `make pipeline`). Trên Colab notebook đã set sẵn.                                                                                                                                                                        |
+| `make bench` fail, câu trả lời rỗng                  | Gemma 4 là reasoning model; lab đã set`--reasoning off`. Nếu bạn tự bật `LAB_REASONING=on`, `content` sẽ rỗng cho đến khi model "nghĩ" xong.                                                                                                                                                                                                                                               |
+| `make metrics` báo scrape failed                        | Server chưa chạy. Chạy`make serve` trước.                                                                                                                                                                                                                                                                                                                                                             |
+| `busy_slots ≈ 1` dù đã chạy metrics                 | Bạn chạy`make metrics` khi không có load. Phải chạy chồng với `make load-50`.                                                                                                                                                                                                                                                                                                                    |
+| locust chỉ hoàn thành vài request                      | Bình thường trên máy yếu. Muốn thêm mẫu, dùng`-t 3m` hoặc giảm `LAB_LOAD_SHORT_TOKENS`.                                                                                                                                                                                                                                                                                                      |
+| Hugging Face bị chặn                                     | Xem[`labs/00-setup/MANUAL-DOWNLOAD.md`](labs/00-setup/MANUAL-DOWNLOAD.md).                                                                                                                                                                                                                                                                                                                                  |
+| Máy < 8 GB RAM                                            | Dùng[`cloud/README.md`](cloud/README.md).                                                                                                                                                                                                                                                                                                                                                                  |
+| `make verify` fail mà chưa rõ lý do                  | Output ghi đúng file còn thiếu và lệnh cần chạy. Đọc từng dòng lỗi.                                                                                                                                                                                                                                                                                                                             |
+| Sau checklist có dòng`make: *** [verify] Error 1`      | Bình thường. Đó chỉ là cách`make` báo rằng `verify` tìm thấy mục còn thiếu — không phải `make` bị lỗi. Đọc checklist ở trên nó.                                                                                                                                                                                                                                               |
 
 ## Các knob có thể đổi
 
